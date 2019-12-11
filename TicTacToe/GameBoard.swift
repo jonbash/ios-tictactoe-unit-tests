@@ -12,7 +12,7 @@ enum GameBoardError: Error, Equatable {
     case invalidSquare
 }
 
-typealias Coordinate = (x: Int, y: Int)
+//typealias Coordinate = (x: Int, y: Int)
 
 struct GameBoard {
     
@@ -34,6 +34,16 @@ struct GameBoard {
     }
     
     subscript(coordinate: Coordinate) -> Mark? {
+        let square = squares[arrayIndex(for: coordinate)]
+        if case let Square.filled(mark) = square {
+            return mark
+        } else {
+            return nil
+        }
+    }
+    
+    subscript(tupleCoord: TupleCoordinate) -> Mark? {
+        let coordinate = Coordinate(x: tupleCoord.x, y: tupleCoord.y)
         let square = squares[arrayIndex(for: coordinate)]
         if case let Square.filled(mark) = square {
             return mark

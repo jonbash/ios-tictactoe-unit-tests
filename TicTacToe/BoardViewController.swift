@@ -36,7 +36,7 @@ class BoardViewController: UIViewController {
         
         for x in 0..<3 {
             for y in 0..<3 {
-                let coord = (x, y)
+                let coord = Coordinate(x: x, y: y)
                 let button = self.button(for: coord)
                 if let mark = board[coord] {
                     button.setTitle(mark.stringValue, for: .normal)
@@ -56,7 +56,7 @@ class BoardViewController: UIViewController {
         let tag = button.tag
         let x = tag % 3
         let y = tag / 3
-        return (x, y)
+        return Coordinate(x: x, y: y)
     }
     
     // MARK: - Properties
